@@ -11,9 +11,9 @@
       href="https://api.mapbox.com/mapbox-gl-js/v3.1.2/mapbox-gl.css"
       rel="stylesheet"
     />
-    <link href="../dist/mapboxgl-marker-compass.css" rel="stylesheet" />
-    <script src="../dist/mapboxgl-marker-compass.js"></script>
     <script src="https://api.mapbox.com/mapbox-gl-js/v3.1.2/mapbox-gl.js"></script>
+    <link href="/mapboxgl-marker-compass.css" rel="stylesheet" />
+    <script src="/mapboxgl-marker-compass.js"></script>
     <style>
       body {
         margin: 0;
@@ -40,7 +40,7 @@
         zoom: 9,
         projection: "equirectangular",
       });
-
+      // Generating 10 random markers
       function generateRandomMarkers(
         baseLat,
         baseLon,
@@ -73,7 +73,6 @@
           lon = (lon * 180) / Math.PI;
           markers.push(new mapboxgl.Marker().setLngLat([lat, lon]).addTo(map));
         }
-        // return [lon, lat];
       }
       generateRandomMarkers(13.404954, 52.520008, 50, 10);
       // Init Marker Compass and pass on map & markers array
