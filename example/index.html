@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Mapbox GL Marker Compass Example</title>
+    <meta
+      name="viewport"
+      content="initial-scale=1,maximum-scale=1,user-scalable=no"
+    />
+    <link
+      href="https://api.mapbox.com/mapbox-gl-js/v3.1.2/mapbox-gl.css"
+      rel="stylesheet"
+    />
+    <link href="../dist/mapboxgl-marker-compass.css" rel="stylesheet" />
+    <script src="../dist/mapboxgl-marker-compass.js"></script>
+    <script src="https://api.mapbox.com/mapbox-gl-js/v3.1.2/mapbox-gl.js"></script>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+      }
+      #map {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+    <script>
+      let markers = [];
+
+      mapboxgl.accessToken =
+        "pk.eyJ1IjoibWFyY290ZXJyZSIsImEiOiJjazY2OTg1YWIweXJiM25sMjN1NHR4Z3U1In0.3s0L-twWhuJbBLOdIJVTeA";
+      const map = new mapboxgl.Map({
+        container: "map",
+        center: [13.404954, 52.520008],
+        zoom: 9,
+        projection: "equirectangular",
+      });
+
+      function generateRandomMarkers(
+        baseLat,
+        baseLon,
+        maxDistanceKm,
+        numMarkers
+      ) {
+        const baseLatRad = (baseLat * Math.PI) / 180;
+        const baseLonRad = (baseLon * Math.PI) / 180;
+        const R = 6371.0;
+        for (let i = 0; i < numMarkers; i++) {
+          const distanceKm = Math.random() * maxDistanceKm;
+          const angle = Math.random() * 360;
+          const angleRad = (angle * Math.PI) / 180;
+          let lat = Math.asin(
+            Math.sin(baseLatRad) * Math.cos(distanceKm / R) +
+              Math.cos(baseLatRad) *
+                Math.sin(distanceKm / R) *
+                Math.cos(angleRad)
+          );
+          let lon =
+            baseLonRad +
+            Math.atan2(
+              Math.sin(angleRad) *
+                Math.sin(distanceKm / R) *
+                Math.cos(baseLatRad),
+              Math.cos(distanceKm / R) - Math.sin(baseLatRad) * Math.sin(lat)
+            );
+
+          lat = (lat * 180) / Math.PI;
+          lon = (lon * 180) / Math.PI;
+          markers.push(new mapboxgl.Marker().setLngLat([lat, lon]).addTo(map));
+        }
+        // return [lon, lat];
+      }
+      generateRandomMarkers(13.404954, 52.520008, 50, 10);
+      // Init Marker Compass and pass on map & markers array
+      new MarkerCompass(map, markers);
+    </script>
+  </body>
+</html>
