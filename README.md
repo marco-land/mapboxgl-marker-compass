@@ -18,10 +18,16 @@ Plugin for Mapbox GL JS to create small marker compasses at the edge of the scre
 pnpm add mapboxgl-marker-compass # or npm, yarn
 ```
 
-2. Import module, create a map and markers
+2. Add CSS, import module, create a map and markers
+
+```html
+<link
+  href="./dist/mapboxgl-marker-compass.css""
+  rel="stylesheet"
+/>
+```
 
 ```javascript
-import "mapboxgl-marker-compass/dist/mapboxgl-marker-compass.css";
 import { MarkerCompass } from "mapboxgl-marker-compass/dist/mapboxgl-marker-compass.mjs";
 
 const map = new mapboxgl.Map({
