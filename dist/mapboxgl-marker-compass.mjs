@@ -9,7 +9,7 @@ class MarkerCompass {
       arrowSize: 4,
       arrowOffset: 14,
       flyToZoom: 12,
-      ...options,
+      ...options
     };
     this.container = null;
     this.markers = markers;
@@ -17,7 +17,6 @@ class MarkerCompass {
     this.map = map;
     this.init();
   }
-
   init() {
     if (!this.map) {
       console.warn("No map container provided.");
@@ -27,7 +26,6 @@ class MarkerCompass {
       console.warn("No markers found.");
       return;
     }
-
     this.map.on("load", this.createCompasses.bind(this));
     this.map.on("move", this.updateCompasses.bind(this));
   }
@@ -49,7 +47,6 @@ class MarkerCompass {
       "--marker-compass-background-color",
       this.options.backgroundColor
     );
-
     if (!container) {
       console.warn("No map container found.");
       return;
@@ -68,12 +65,13 @@ class MarkerCompass {
       compass.appendChild(arrow);
       container.appendChild(compass);
       compass.addEventListener("click", () => {
-        if (!this.markers?.[index]?._lngLat) {
+        var _a, _b;
+        if (!((_b = (_a = this.markers) == null ? void 0 : _a[index]) == null ? void 0 : _b._lngLat)) {
           return;
         }
         this.map.flyTo({
           center: this.markers[index]._lngLat,
-          zoom: this.options.flyToZoom,
+          zoom: this.options.flyToZoom
         });
       });
       this.compasses.push(compass);
@@ -101,7 +99,7 @@ class MarkerCompass {
       const y = this.map.project(lngLat).y;
       let translate = {
         x: offset,
-        y: offset,
+        y: offset
       };
       if (y > compassHeight) {
         translate.y = y - compassHeight / 2;
@@ -117,8 +115,7 @@ class MarkerCompass {
       }
       compass.style.transform = `translate(${translate.x}px, ${translate.y}px)`;
       if (!bounds.contains(lngLat)) {
-        const angleDeg =
-          (Math.atan2(translate.y - y, translate.x - x) * 180) / Math.PI;
+        const angleDeg = Math.atan2(translate.y - y, translate.x - x) * 180 / Math.PI;
         compass.style.setProperty("--marker-compass-angle", `${angleDeg}deg`);
         compass.style.opacity = 1;
         compass.style.pointerEvents = "all";
@@ -129,3 +126,6 @@ class MarkerCompass {
     });
   }
 }
+export {
+  MarkerCompass
+};

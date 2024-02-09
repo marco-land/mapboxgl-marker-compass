@@ -1,0 +1,17 @@
+{
+  "name": "mapboxgl-marker-compass",
+  "private": true,
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "build:watch": "vite build --watch",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "vite": "^5.1.0"
+  },
+  "dependencies": {
+    "prettier": "^3.2.5"
+  }
+}
