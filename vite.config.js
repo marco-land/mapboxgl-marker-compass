@@ -7,7 +7,7 @@ export default defineConfig({
     port: 3000,
   },
   build: {
-    minify: false,
+    minify: true,
     lib: {
       entry: path.resolve(__dirname, "src/main.js"),
       name: "mapboxgl-marker-compass",
