@@ -4,9 +4,11 @@ Plugin for Mapbox GL JS to create small marker compasses at the edge of the scre
 
 ![mapboxgl-marker-compass-preview](https://github.com/marco-land/mapboxgl-marker-compass/assets/24410335/ed9cfcca-1684-41ef-8d9c-451fbb5e7d80)
 
-# Live Demo
+# Live Demos
 
-[See the live demo](https://mapbox-gl-marker-compass.netlify.app)
+[Basic usage](https://mapbox-gl-marker-compass.netlify.app)
+
+[Example project usage](https://boote-bojen-pokale.de/)
 
 # Instructions
 
